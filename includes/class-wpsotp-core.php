@@ -16,7 +16,7 @@ class WPSOTP_Core {
 
         $otp = rand(1000,9999);
 
-        do_action( 'wpsotp_otp_generated', $otp);
+        do_action( 'wpsotp_otp_generated', $otp, $user_id);
 
         $hash = hash_hmac('md5', $otp, WPSOTP_HASH_KEY);
 
@@ -33,7 +33,7 @@ class WPSOTP_Core {
 
         do_action( 'wpsotp_otp_generated_after');
 
-        return $otp;
+        return $otp_id;
     }
 
     public static function verify_otp( $id, $otp ) {
@@ -44,9 +44,7 @@ class WPSOTP_Core {
 
         // Check OTP Expiration
         if ( (new DateTime($otp_r->valid_until)) < (new DateTime()) ) {
-
             do_action( 'wpsotp_otp_expired' );
-
             return false;
         }
 
