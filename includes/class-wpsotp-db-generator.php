@@ -20,7 +20,7 @@ class WPSOTP_GenerateTables {
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-        if ( !$wpdb->get_var( "SHOW TABLES LIKE" . WPSOTP_DB_OTP_TABLE ) ) {
+        if ( !$wpdb->get_var( "SHOW TABLES LIKE " . WPSOTP_DB_OTP_TABLE ) ) {
             dbDelta( self::tables() );
         }
     }
