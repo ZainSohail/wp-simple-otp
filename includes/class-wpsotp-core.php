@@ -33,7 +33,7 @@ class WPSOTP_Core {
 
         do_action( 'wpsotp_otp_generated_after');
 
-        return $otp_id;
+        return $wpdb->insert_id;
     }
 
     public static function verify_otp( $id, $otp ) {
